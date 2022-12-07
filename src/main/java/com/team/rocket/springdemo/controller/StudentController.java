@@ -2,8 +2,8 @@ package com.team.rocket.springdemo.controller;
 
 import com.team.rocket.springdemo.model.Student;
 import com.team.rocket.springdemo.service.StudentService;
+import com.team.rocket.springdemo.service.WebsocketSevice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +13,8 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    @Autowired
+    private WebsocketSevice websocketSevice;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -25,8 +27,9 @@ public class StudentController {
     }
 
     @PostMapping
-    public void createStudent(@RequestBody Student student) {
+    public void createStudent(@RequestBody Student student) throws Exception{
         studentService.createStudent(student);
+        websocketSevice.sendNewStudent(student);
     }
 
     @DeleteMapping(path="{studentId}")
