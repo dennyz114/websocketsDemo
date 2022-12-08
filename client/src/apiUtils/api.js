@@ -37,6 +37,6 @@ export const closeWS = () => {
 
 export const sendHiToUser = (userNameToReceiveHello) => {
   if (socketClient !== null) {
-    socketClient.send('/app/hello', {userName: userNameToReceiveHello}, JSON.stringify({name: userNameToReceiveHello}))
+    socketClient.send('/app/hello', {}, JSON.stringify({name: userNameToReceiveHello}))
   }
 }

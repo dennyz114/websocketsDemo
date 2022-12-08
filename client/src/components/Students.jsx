@@ -8,7 +8,7 @@ const Students = () => {
   const [userNameToSendMessage, setUserNameToSendMessage] = useState('')
 
   useEffect(() => {
-    loadStudents()
+    void loadStudents()
     return () => closeWS()
   }, [])
 
